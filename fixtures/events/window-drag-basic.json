@@ -1,0 +1,14 @@
+{
+  "name": "window-drag-basic",
+  "events": [
+    {"type": "launch_app", "app": "files"},
+    {"type": "pointer_down", "x": 10, "y": 2, "button": "primary"},
+    {"type": "pointer_move", "x": 20, "y": 6},
+    {"type": "pointer_up", "x": 20, "y": 6, "button": "primary"}
+  ],
+  "expect": {
+    "windows": [
+      {"app": "files", "focused": true}
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "open-files-and-focus",
+  "events": [
+    {"type": "launch_app", "app": "files"}
+  ],
+  "expect": {
+    "windows": [
+      {"app": "files", "focused": true}
+    ]
+  }
+}

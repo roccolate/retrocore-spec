@@ -1,0 +1,19 @@
+{
+  "name": "win31",
+  "tokens": {
+    "desktop.bg": "#008080",
+    "window.bg": "#c0c0c0",
+    "window.fg": "#000000",
+    "window.border": "#000000",
+    "window.title.bg": "#000080",
+    "window.title.fg": "#ffffff",
+    "button.bg": "#c0c0c0",
+    "button.fg": "#000000",
+    "selection.bg": "#000080",
+    "selection.fg": "#ffffff",
+    "status.bg": "#c0c0c0",
+    "status.fg": "#000000",
+    "warning.fg": "#ffff00",
+    "error.fg": "#ff0000"
+  }
+}

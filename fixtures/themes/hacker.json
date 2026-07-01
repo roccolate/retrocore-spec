@@ -1,0 +1,19 @@
+{
+  "name": "hacker",
+  "tokens": {
+    "desktop.bg": "#000000",
+    "window.bg": "#001100",
+    "window.fg": "#00ff66",
+    "window.border": "#00aa44",
+    "window.title.bg": "#003300",
+    "window.title.fg": "#00ff66",
+    "button.bg": "#002200",
+    "button.fg": "#00ff66",
+    "selection.bg": "#005522",
+    "selection.fg": "#ffffff",
+    "status.bg": "#001100",
+    "status.fg": "#00ff66",
+    "warning.fg": "#ffff00",
+    "error.fg": "#ff4444"
+  }
+}

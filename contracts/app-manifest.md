@@ -40,6 +40,20 @@ requires=input,storage,window
 | `version` | no | App version string. |
 | `requires` | no | Comma-separated capabilities. |
 
+## Initial Logical App IDs
+
+The current event fixtures use a small shared vocabulary of logical app ids.
+Projects map these ids to their own local app registry entries.
+
+| Logical app id | Meaning | Example project-local mapping |
+|---|---|---|
+| `files` | File manager / storage browser | RetroDesk `filemanager` |
+| `notes` | Simple notes/text editor | RetroDesk `notepad` |
+
+This vocabulary is intentionally small and draft-stage. Adding new shared app ids
+should be driven by fixtures or cross-project behavior tests, not by one
+project's internal app names.
+
 ## Capability Vocabulary
 
 Initial shared capabilities:

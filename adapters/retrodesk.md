@@ -55,6 +55,38 @@ If a future fixture requires app-window geometry after a full `Desktop` replay,
 RetroDesk should add a small public desktop/window geometry helper instead of
 reaching into private `Desktop` internals.
 
+### `focus-next-basic.json`
+
+RetroDesk maps `fixtures/events/focus-next-basic.json` like this:
+
+| retrocore event/app | RetroDesk action |
+|---|---|
+| `launch_app` app `files` | focus local `filemanager` |
+| `launch_app` app `notes` | focus local `notepad` |
+| `focus_next` | desktop Tab focus command / `wm_cycle_focus()` |
+| expect `files` focused | File Manager becomes active again |
+
+RetroDesk's WM skips fixed shell/desktop windows during focus cycling so
+`focus_next` cycles among focusable app windows rather than landing on the fixed
+Desktop shell.
+
+### `close-focused-window.json`
+
+RetroDesk maps `fixtures/events/close-focused-window.json` like this:
+
+| retrocore event/app | RetroDesk action |
+|---|---|
+| `launch_app` app `files` | focus local `filemanager` |
+| `close_window` with `window: focused` | desktop close-window command |
+| expect `files` `exists: false` | File Manager app/window is removed |
+
+## App ID Mapping
+
+| Retrocore logical app | RetroDesk local app |
+|---|---|
+| `files` | `filemanager` |
+| `notes` | `notepad` |
+
 ## Supported Event Types
 
 Currently consumed by RetroDesk's tiny fixture runner:
@@ -63,11 +95,11 @@ Currently consumed by RetroDesk's tiny fixture runner:
 - `pointer_down`
 - `pointer_move`
 - `pointer_up`
+- `focus_next`
+- `close_window`
 
 Planned / not yet consumed:
 
-- `focus_next`
-- `close_window`
 - `key`
 - `menu_action`
 

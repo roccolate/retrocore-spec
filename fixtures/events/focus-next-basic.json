@@ -1,0 +1,14 @@
+{
+  "name": "focus-next-basic",
+  "events": [
+    {"type": "launch_app", "app": "files"},
+    {"type": "launch_app", "app": "notes"},
+    {"type": "focus_next"}
+  ],
+  "expect": {
+    "windows": [
+      {"app": "files", "focused": true},
+      {"app": "notes", "focused": false}
+    ]
+  }
+}

@@ -44,14 +44,16 @@ but translates the start point to the local File Manager title bar so the same
 contract can exercise RetroDesk-native WM drag behavior without requiring all
 projects to share identical initial window geometry.
 
-Current RetroDesk assertions for this fixture are intentionally conservative:
+RetroDesk assertions for this fixture are split intentionally:
 
-- File Manager exists.
-- File Manager remains focused after the pointer sequence.
-- App/window counts do not increase.
+- desktop-level replay verifies File Manager exists, remains focused, and is not
+  duplicated;
+- WM-level replay uses `retro_window_get_geometry()` to assert final `x`/`y`
+  coordinates after applying the fixture drag delta.
 
-TODO: assert final window coordinates once RetroDesk exposes a clean public
-window-geometry assertion helper for contract tests.
+If a future fixture requires app-window geometry after a full `Desktop` replay,
+RetroDesk should add a small public desktop/window geometry helper instead of
+reaching into private `Desktop` internals.
 
 ## Supported Event Types
 

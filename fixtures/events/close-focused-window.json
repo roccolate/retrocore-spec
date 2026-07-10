@@ -1,0 +1,12 @@
+{
+  "name": "close-focused-window",
+  "events": [
+    {"type": "launch_app", "app": "files"},
+    {"type": "close_window", "window": "focused"}
+  ],
+  "expect": {
+    "windows": [
+      {"app": "files", "exists": false}
+    ]
+  }
+}

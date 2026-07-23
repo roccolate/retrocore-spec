@@ -9,11 +9,14 @@ Shared contracts and fixtures for the retro systems family:
 
 This repository intentionally starts with **contracts before code**.
 
-The goal is to avoid duplicated decisions across projects without forcing all systems into one shared runtime.
+The goal is to avoid duplicated decisions across projects without forcing all
+systems into one shared runtime.
 
 ## What This Repository Is
 
-`retrocore-spec` is a specification and test-fixture repository. It provides shared vocabulary, human-readable contracts, and small fixtures that individual projects may consume in their own native way.
+`retrocore-spec` is a specification and test-fixture repository. It provides
+shared vocabulary, human-readable contracts, and small fixtures that individual
+projects may consume in their own native way.
 
 It is **not**:
 
@@ -23,12 +26,14 @@ It is **not**:
 - a kernel abstraction layer
 - a portability layer that hides each platform
 
-Each project keeps its own implementation, build system, platform glue, and runtime model.
+Each project keeps its own implementation, build system, platform glue, and
+runtime model.
 
 ## Rules
 
 1. Share contracts, fixtures, and vocabulary first.
-2. Do not share runtime code until at least three projects prove the same shape is needed.
+2. Do not share runtime code until at least three projects prove the same shape
+   is needed.
 3. Keep platform glue local.
 4. A contract may be partially implemented by a project.
 5. If a contract makes a project less honest to its platform, the project wins.
@@ -70,7 +75,7 @@ decisions/  architecture decision records
 | RetroTUI | `adapters/retrotui.md` | Planned/reference mapping for Python/curses plugins, events, windows, and themes. |
 | RetroDesk | `adapters/retrodesk.md` | Active mapping for event fixtures and RetroDesk-native app/window behavior. |
 | WiiOS | `adapters/wiios.md` | Active mapping for WiiOS `manifest.ini` fields and legacy aliases. |
-| ArmoniOS | `adapters/armonios.md` | Planned mapping for bootfs/app metadata, GUI events, and bare-metal boundaries. |
+| ArmoniOS | `adapters/armonios.md` | Active/partial semantic-theme mapping; app metadata, logical events, and window fixtures remain planned. |
 
 ## Adoption Order
 
@@ -82,6 +87,11 @@ decisions/  architecture decision records
 
 ## Maintenance Rule
 
-When a project starts using a contract or fixture, update the matching file in `adapters/` and the matrix in `contracts/compliance.md` in the same change. If implementation behavior differs from the contract, document the project-specific exception instead of forcing the project to pretend it is compatible.
+When a project starts using a contract or fixture, update the matching file in
+`adapters/` and the matrix in `contracts/compliance.md` in the same change. If
+implementation behavior differs from the contract, document the project-specific
+exception instead of forcing the project to pretend it is compatible.
 
-Older working notes may still exist outside this repository, such as `~/RETRO_SYSTEMS_MAP.md`, but this repository is the source of truth for shared contracts, fixtures, adapter notes, and decisions.
+Older working notes may still exist outside this repository, such as
+`~/RETRO_SYSTEMS_MAP.md`, but this repository is the source of truth for shared
+contracts, fixtures, adapter notes, and decisions.

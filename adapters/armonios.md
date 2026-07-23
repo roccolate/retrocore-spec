@@ -1,14 +1,36 @@
 # ArmoniOS Adapter Notes
 
-Status: planned/reference
+Status: active/partial
 
-ArmoniOS should consume retrocore contracts as boot/app metadata vocabulary, GUI behavior vocabulary, and host-test fixture vocabulary. It must not consume this repository as a shared runtime dependency.
+ArmoniOS consumes retrocore contracts as boot/app metadata vocabulary, GUI
+behavior vocabulary, semantic theme vocabulary, and host-test fixture
+vocabulary. It does not consume this repository as a shared runtime dependency.
 
-ArmoniOS is the bare-metal AArch64 desktop OS in the retro systems family. Its kernel, drivers, scheduler, memory model, boot flow, and compositor rules remain ArmoniOS-native.
+ArmoniOS is the bare-metal AArch64 desktop OS in the retro systems family. Its
+kernel, drivers, scheduler, memory model, boot flow, and compositor rules remain
+ArmoniOS-native.
+
+## Current adoption evidence
+
+The first implemented adoption slice is intentionally small:
+
+- `programs/libarmdesk/theme.h` maps the shared semantic theme-token names to
+  ArmoniOS-local `0xAARRGGBB` framebuffer colors.
+- `include/armonios/abi/gui.h` separates the public GUI ABI from compositor
+  internals; this is an ArmoniOS boundary improvement, not a shared runtime.
+- `programs/libarmdesk/rect.h` adapts the small geometry shape proven in `rkc`
+  without adding an `rkc` build or runtime dependency.
+- `tests/run_libarmdesk_foundation_test.sh` protects the adopted token count,
+  rectangle behavior, and frozen GUI event layout.
+
+App manifests, logical event fixtures, and the shared window-model vocabulary
+remain planned until ArmoniOS adds concrete implementation or replay tests for
+them.
 
 ## App Manifest
 
-ArmoniOS may map bootfs or app-registry metadata to `contracts/app-manifest.md` like this:
+ArmoniOS may map bootfs or app-registry metadata to
+`contracts/app-manifest.md` like this:
 
 | retrocore field | ArmoniOS source |
 |---|---|
@@ -31,7 +53,8 @@ These should remain local unless another project needs the same vocabulary.
 
 ## Logical Events
 
-ArmoniOS may map raw input into `contracts/events.md` for GUI behavior tests, emulator tests, or host-side replay tests.
+ArmoniOS may map raw input into `contracts/events.md` for GUI behavior tests,
+emulator tests, or host-side replay tests.
 
 Suggested mappings:
 
@@ -44,11 +67,14 @@ Suggested mappings:
 | compositor focus command | `focus_next` |
 | window close request | `close_window` |
 
-Raw scan codes, interrupt details, device descriptors, and driver constants should stay outside shared fixtures unless explicitly needed for a hardware-specific test.
+Raw scan codes, interrupt details, device descriptors, and driver constants
+should stay outside shared fixtures unless explicitly needed for a
+hardware-specific test.
 
 ## Window Model
 
-ArmoniOS may implement `contracts/window-model.md` through a kernel-owned or compositor-owned model.
+ArmoniOS may implement `contracts/window-model.md` through a kernel-owned or
+compositor-owned model.
 
 Expected mapping:
 
@@ -61,13 +87,19 @@ Expected mapping:
 | Minimized window | hidden surface still represented in app/task state |
 | Maximized window | surface occupying available desktop area |
 
-Partial implementation is allowed while the OS is early. Do not add kernel or compositor internals to the shared contract.
+Partial implementation is allowed while the OS is early. Do not add kernel or
+compositor internals to the shared contract.
 
 ## Theme Tokens
 
-ArmoniOS may map `contracts/theme-tokens.md` into its framebuffer/compositor palette or GUI style table.
+ArmoniOS maps `contracts/theme-tokens.md` into the `libarmdesk` semantic theme
+table. The shared token names are adopted; exact colors and framebuffer packing
+remain local to ArmoniOS.
 
-Projects may quantize or reinterpret token values. The token names are the shared contract; the exact rendering is platform-local.
+The initial mapping includes every current core and optional token, including
+window, button, selection, status, warning, error, panel, icon, shadow, and
+disabled roles. JSON theme fixtures remain planned until ArmoniOS has a runtime
+or build-time theme loader.
 
 ## Boundaries
 
